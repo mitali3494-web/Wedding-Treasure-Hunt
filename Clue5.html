@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clue 5 - Sitla Treasure Hunt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #b30059;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff66b3;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Sitla Treasure Hunt: Clue 5 ✨</h1>
+  <p>Enter your team name to receive your clue and next location:</p>
+
+  <input type="text" id="teamName" placeholder="Enter team name exactly">
+  <button onclick="getClue()">Submit</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function getClue() {
+      const team = document.getElementById("teamName").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+
+      const clues = {
+        "team mustard missile": {
+          clue: "You thought this was the end? Simran still has to catch that train. Head where the journey begins.",
+          next: "Entrance Gate"
+        },
+        "team rawmance": {
+          clue: "Tiger's not done yet. The real intelligence is waiting at the dining table—along with your next clue.",
+          next: "Dining Area"
+        },
+        "team zoom-in zoom-out": {
+          clue: "Twist alert: the family lunch has a villain at the table. Zoom in on the cutlery.",
+          next: "Dining Area"
+        },
+        "team what was that?": {
+          clue: "Poo never eats without drama. Check where the napkins are neatly folded.",
+          next: "Dining Area"
+        },
+        "team tax-free cricket": {
+          clue: "They played cricket for freedom. You just have to walk to the gate.",
+          next: "Entrance Gate"
+        }
+      };
+
+      if (clues[team]) {
+        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Next Location:</strong> ${clues[team].next}`;
+      } else {
+        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+      }
+    }
+  </script>
+</body>
+</html>
