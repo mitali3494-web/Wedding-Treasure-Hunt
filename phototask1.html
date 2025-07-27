@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Task 1 - Sitla Treasure Hunt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #b30059;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff66b3;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Sitla Treasure Hunt: Photo Task 1 ✨</h1>
+  <p>Enter your team name to receive your photo task:</p>
+
+  <input type="text" id="teamName" placeholder="Enter team name exactly">
+  <button onclick="getTask()">Submit</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function getTask() {
+      const team = document.getElementById("teamName").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+
+      const tasks = {
+        "team mustard missile": true,
+        "team rawmance": true,
+        "team zoom-in zoom-out": true,
+        "team what was that?": true,
+        "team tax-free cricket": true
+      };
+
+      if (tasks[team]) {
+        output.innerHTML = `<strong>Task:</strong> Recreate the iconic DDLJ climax scene. Choose one teammate to be Simran and another to be Raj. Stage the moment where she runs to catch the train (bonus points if a dupatta is flying dramatically). 📸<br><br><strong>Location Suggestion:</strong> Use a stairway, porch, or garden path for added cinematic flair.<br><br><strong>What to Do:</strong> Take a team photo or video of your recreation. You’ll need to show this at the finish line.`;
+      } else {
+        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+      }
+    }
+  </script>
+</body>
+</html>
