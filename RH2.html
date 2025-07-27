@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Red Herring 2 - Cookie Challenge</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffbea;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #d2691e;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #d2691e;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #fff0d9;
+      border-left: 5px solid #d2691e;
+    }
+  </style>
+</head>
+<body>
+  <h1>☕ Red Herring 2: Cookie Challenge ☕</h1>
+  <p>This clue has *absolutely nothing* to do with the game. But if you answer it correctly, you win a cookie. Literally.</p>
+
+  <p><strong>Riddle:</strong><br>
+  I appear in scenes with chai and rain,<br>
+  A biscuit’s soulmate, simple and plain.<br>
+  Dip me once, don't let me fall—<br>
+  I break your heart when I break at all.<br>
+  <em>What am I?</em>
+  </p>
+
+  <input type="text" id="cookieAnswer" placeholder="Your answer here">
+  <button onclick="checkCookieAnswer()">Submit</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function checkCookieAnswer() {
+      const answer = document.getElementById("cookieAnswer").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+
+      if (answer === "parle-g" || answer === "parle g") {
+        output.innerHTML = `<strong>🍪 Correct!</strong><br><br>You win a cookie! Show this screen to the Game Master and claim your reward.`;
+      } else {
+        output.innerHTML = `<strong>❌ Nope!</strong><br><br>Nice try, but that's not the dunkable we’re looking for.`;
+      }
+    }
+  </script>
+</body>
+</html>
