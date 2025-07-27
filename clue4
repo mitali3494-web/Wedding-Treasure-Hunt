@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clue 4 - Sitla Treasure Hunt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #b30059;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff66b3;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Sitla Treasure Hunt: Clue 4 ✨</h1>
+  <p>Enter your team name to receive your clue and next location:</p>
+
+  <input type="text" id="teamName" placeholder="Enter team name exactly">
+  <button onclick="getClue()">Submit</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function getClue() {
+      const team = document.getElementById("teamName").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+
+      const clues = {
+        "team mustard missile": {
+          clue: "DDLJ was almost delayed because Simran was busy reading—find the spot where she’d hide a romance novel.",
+          next: "Library"
+        },
+        "team rawmance": {
+          clue: "RAW agents rarely read. But maybe this time, the answer is behind a book.",
+          next: "Library"
+        },
+        "team zoom-in zoom-out": {
+          clue: "The plot twist? The villain hid your next clue in the *Library*. Go zoom in.",
+          next: "Library"
+        },
+        "team what was that?": {
+          clue: "Poo once read half a book. She said it was exhausting. Maybe your next clue’s in there anyway.",
+          next: "Library"
+        },
+        "team tax-free cricket": {
+          clue: "Even Lagaan had a script. Check the one place scripts live—alphabetized.",
+          next: "Library"
+        }
+      };
+
+      if (clues[team]) {
+        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Next Location:</strong> ${clues[team].next}`;
+      } else {
+        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+      }
+    }
+  </script>
+</body>
+</html>
