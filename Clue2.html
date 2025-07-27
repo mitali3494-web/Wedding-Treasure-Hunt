@@ -4,81 +4,38 @@
   <meta charset="UTF-8">
   <title>Clue 2 - Sitla Treasure Hunt</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff7e6;
-      color: #333;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #b30059;
-    }
-    input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ff66b3;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #ffe6f0;
-      border-left: 4px solid #b30059;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; }
+    button { background-color: #ff66b3; color: white; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
   </style>
 </head>
 <body>
   <h1>✨ Sitla Treasure Hunt: Clue 2 ✨</h1>
-  <p>Enter your team name to receive your clue and next location:</p>
-
-  <input type="text" id="teamName" placeholder="Enter team name exactly">
-  <button onclick="getClue()">Submit</button>
-
+  <p>Enter your team name to receive your clue, crossword letter, and next QR location:</p>
+  <input type="text" id="team" placeholder="Enter team name exactly">
+  <button onclick="reveal()">Submit</button>
   <div class="output" id="output"></div>
-
   <script>
-    function getClue() {
-      const team = document.getElementById("teamName").value.trim().toLowerCase();
-      const output = document.getElementById("output");
-
-      const clues = {
-        "team mustard missile": {
-          clue: "Pose like Simran about to miss her train. Bonus points for a flying dupatta.",
-          next: "Big Tree / Breakfast Area"
-        },
-        "team rawmance": {
-          clue: "Your next mission is classified. Find where the books hold more secrets than RAW files.",
-          next: "Library"
-        },
-        "team zoom-in zoom-out": {
-          clue: "Karan Johar wants your best dramatic walk. Bonus points if someone fake-cries.",
-          next: "Dining Area"
-        },
-        "team what was that?": {
-          clue: "Poo would never enter through the main gate. But maybe you should.",
-          next: "Entrance Gate"
-        },
-        "team tax-free cricket": {
-          clue: "Lagaan was won in the shade. Head to the tree that could be your lucky toss.",
-          next: "Big Tree / Breakfast Area"
-        }
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const o = document.getElementById('output');
+      const clueText = "Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?";
+      const answer = 'N';
+      const nextMap = {
+        'team mustard missile': 'Dining Area',
+        'team rawmance':      'Dining Area',
+        'team zoom-in zoom-out': 'Dining Area',
+        'team what was that?':   'Lounge / Fire Pit',
+        'team tax-free cricket': 'Library'
       };
-
-      if (clues[team]) {
-        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Next Location:</strong> ${clues[team].next}`;
+      if (nextMap[t]) {
+        o.innerHTML = `<strong>Clue:</strong> ${clueText}` +
+                      `<br><br><strong>Crossword:</strong> ${answer}` +
+                      `<br><br><strong>Next QR Location:</strong> ${nextMap[t]}`;
       } else {
-        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+        o.innerHTML = '<em>Team name not recognized. Please enter exact team name.</em>';
       }
     }
   </script>
