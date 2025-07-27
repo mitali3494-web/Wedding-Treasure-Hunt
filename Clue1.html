@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clue 1 - Sitla Treasure Hunt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #b30059;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff66b3;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Sitla Treasure Hunt: Clue 1 ✨</h1>
+  <p>Enter your team name to receive your clue and next location:</p>
+
+  <input type="text" id="teamName" placeholder="Enter team name exactly">
+  <button onclick="getClue()">Submit</button>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    function getClue() {
+      const team = document.getElementById("teamName").value.trim().toLowerCase();
+      const output = document.getElementById("output");
+
+      const clues = {
+        "team mustard missile": {
+          clue: "Her passport was almost denied—but DDLJ wouldn’t exist without her running through a mustard field in a lehenga.",
+          next: "Tea Garden"
+        },
+        "team rawmance": {
+          clue: "He was a RAW agent. She was ISI. It was less ‘Romeo and Juliet’ and more ‘Salman and stunt scenes.’",
+          next: "Viewing Deck"
+        },
+        "team zoom-in zoom-out": {
+          clue: "Queen of dramatic zoom-ins and joint families",
+          next: "Reading Nook"
+        },
+        "team what was that?": {
+          clue: "Tell me how it was? It was horrible!",
+          next: "Firepit"
+        },
+        "team tax-free cricket": {
+          clue: "The only time cricket and colonialism made for Oscar bait",
+          next: "Dining Lawn"
+        }
+      };
+
+      if (clues[team]) {
+        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Next Location:</strong> ${clues[team].next}`;
+      } else {
+        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+      }
+    }
+  </script>
+</body>
+</html>
