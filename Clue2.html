@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Clue 2 – Sitla Treasure Hunt</title>
+  <title>Clue 2 – Sitla Treasure Hunt</title>
   <style>body{font-family:'Segoe UI',sans-serif;background:#fff7e6;color:#333;padding:20px;max-width:600px;margin:auto;}h1{color:#b30059;}input,button{padding:10px;font-size:16px;width:100%;box-sizing:border-box;}button{background:#ff66b3;color:#fff;border:none;cursor:pointer;margin-top:10px;}.output{margin-top:20px;padding:15px;background:#ffe6f0;border-left:4px solid #b30059;}.photo-btn{margin-top:12px;}</style>
 </head>
 <body>
-  <h1>✨ Clue 2 ✨</h1>
+  <h1>✨ Clue 2 ✨</h1>
   <p>Enter your team name:</p>
   <input id="team"><button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
@@ -14,13 +14,12 @@
     const pageIndex = 1;
     /* teamRoutes same as Clue1 */
     function reveal() {
-      const t = document.getElementById('team').value.trim().toLowerCase();
-      const route = teamRoutes[t]; const o = document.getElementById('out');
+      const t = document.getElementById('team').value.trim().toLowerCase(); const route = teamRoutes[t]; const o=document.getElementById('out');
       if (!route) { o.innerHTML = '<em>Team name not recognized.</em>'; return; }
       const step = route[pageIndex];
       let html = `<strong>Clue:</strong> ${step.clue}<br><br><strong>Next QR Location:</strong> ${step.next}`;
-      if (step.photo1) html += `<br><br><a href="phototask1.html" class="photo-btn"><button>📸 Photo Task 1</button></a>`;
-      if (step.photo2) html += `<br><br><a href="phototask2.html" class="photo-btn"><button>📸 Photo Task 2</button></a>`;
+      if (step.photo1) html += `<br><br><a href="phototask1.html" class="photo-btn"><button>📸 Photo Task 1</button></a>`;
+      if (step.photo2) html += `<br><br><a href="phototask2.html" class="photo-btn"><button>📸 Photo Task 2</button></a>`;
       o.innerHTML = html;
     }
   </script>
