@@ -4,81 +4,38 @@
   <meta charset="UTF-8">
   <title>Clue 6 - Sitla Treasure Hunt</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff7e6;
-      color: #333;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #b30059;
-    }
-    input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ff66b3;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #ffe6f0;
-      border-left: 4px solid #b30059;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { background-color: #ff66b3; color: white; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
   </style>
 </head>
 <body>
   <h1>✨ Sitla Treasure Hunt: Clue 6 ✨</h1>
-  <p>Enter your team name to receive your final clue and location:</p>
-
-  <input type="text" id="teamName" placeholder="Enter team name exactly">
-  <button onclick="getClue()">Submit</button>
-
+  <p>Enter your team name to receive your clue, crossword letter, and next QR location:</p>
+  <input type="text" id="team" placeholder="Enter team name exactly">
+  <button onclick="reveal()">Submit</button>
   <div class="output" id="output"></div>
-
   <script>
-    function getClue() {
-      const team = document.getElementById("teamName").value.trim().toLowerCase();
-      const output = document.getElementById("output");
-
-      const clues = {
-        "team mustard missile": {
-          clue: "Simran’s journey ends where the food begins. One last clue is hiding among the plates.",
-          next: "Dining Area"
-        },
-        "team rawmance": {
-          clue: "Even spies need snacks. Your last assignment is hiding in plain sight on the dining table.",
-          next: "Dining Area"
-        },
-        "team zoom-in zoom-out": {
-          clue: "One final zoom. Look where the heroes gather for their last scene: dinner time.",
-          next: "Dining Area"
-        },
-        "team what was that?": {
-          clue: "All good things end in drama and dessert. Poo is waiting at the table.",
-          next: "Dining Area"
-        },
-        "team tax-free cricket": {
-          clue: "From cricket to cutlery. Your last over ends where the spoons shine.",
-          next: "Dining Area"
-        }
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const o = document.getElementById('output');
+      const clueText = "She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.";
+      const answer = 'E';
+      const nextMap = {
+        'team mustard missile':      'Dining Area',
+        'team rawmance':             'Dining Area',
+        'team zoom-in zoom-out':     'Dining Area',
+        'team what was that?':       'Dining Area',
+        'team tax-free cricket':     'Dining Area'
       };
-
-      if (clues[team]) {
-        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Final Location:</strong> ${clues[team].next}`;
+      if (nextMap[t]) {
+        o.innerHTML = `<strong>Clue:</strong> ${clueText}` +
+                      `<br><br><strong>Crossword:</strong> ${answer}` +
+                      `<br><br><strong>Next QR Location:</strong> ${nextMap[t]}`;
       } else {
-        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+        o.innerHTML = '<em>Team name not recognized. Please enter exact team name.</em>';
       }
     }
   </script>
