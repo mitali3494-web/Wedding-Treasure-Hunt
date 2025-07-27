@@ -12,11 +12,12 @@
   </style>
 </head>
 <body>
-  <h1>✨ Sitla Treasure Hunt: Clue 6 ✨</h1>
+  <h1>✨ Sitla Treasure Hunt: Clue 6 ✨</h1>
   <p>Enter your team name to receive your clue, crossword letter, and next QR location:</p>
   <input type="text" id="team" placeholder="Enter team name exactly">
   <button onclick="reveal()">Submit</button>
   <div class="output" id="output"></div>
+
   <script>
     function reveal() {
       const t = document.getElementById('team').value.trim().toLowerCase();
@@ -24,18 +25,18 @@
       const clueText = "She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.";
       const answer = 'E';
       const nextMap = {
-        'team mustard missile':      'Dining Area',
-        'team rawmance':             'Dining Area',
-        'team zoom-in zoom-out':     'Dining Area',
-        'team what was that?':       'Dining Area',
-        'team tax-free cricket':     'Dining Area'
+        'team mustard missile':      'Entrance Gate',
+        'team rawmance':             'Entrance Gate',
+        'team zoom-in zoom-out':     'Library',
+        'team what was that?':       'Big Tree / Breakfast Area',
+        'team tax-free cricket':     'Estate Suite'
       };
       if (nextMap[t]) {
-        o.innerHTML = `<strong>Clue:</strong> ${clueText}` +
-                      `<br><br><strong>Crossword:</strong> ${answer}` +
-                      `<br><br><strong>Next QR Location:</strong> ${nextMap[t]}`;
+        o.innerHTML = `<strong>Clue:</strong> ${clueText}`
+                    + `<br><br><strong>Crossword:</strong> ${answer}`
+                    + `<br><br><strong>Next QR Location:</strong> ${nextMap[t]}`;
       } else {
-        o.innerHTML = '<em>Team name not recognized. Please enter exact team name.</em>';
+        o.innerHTML = `<em>Team name not recognized. Please enter exact team name.</em>`;
       }
     }
   </script>
