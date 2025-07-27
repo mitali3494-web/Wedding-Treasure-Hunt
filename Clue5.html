@@ -4,81 +4,38 @@
   <meta charset="UTF-8">
   <title>Clue 5 - Sitla Treasure Hunt</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff7e6;
-      color: #333;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #b30059;
-    }
-    input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ff66b3;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #ffe6f0;
-      border-left: 4px solid #b30059;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { background-color: #ff66b3; color: white; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
   </style>
 </head>
 <body>
   <h1>✨ Sitla Treasure Hunt: Clue 5 ✨</h1>
-  <p>Enter your team name to receive your clue and next location:</p>
-
-  <input type="text" id="teamName" placeholder="Enter team name exactly">
-  <button onclick="getClue()">Submit</button>
-
+  <p>Enter your team name to receive your clue, crossword letter, and next QR location:</p>
+  <input type="text" id="team" placeholder="Enter team name exactly">
+  <button onclick="reveal()">Submit</button>
   <div class="output" id="output"></div>
-
   <script>
-    function getClue() {
-      const team = document.getElementById("teamName").value.trim().toLowerCase();
-      const output = document.getElementById("output");
-
-      const clues = {
-        "team mustard missile": {
-          clue: "You thought this was the end? Simran still has to catch that train. Head where the journey begins.",
-          next: "Entrance Gate"
-        },
-        "team rawmance": {
-          clue: "Tiger's not done yet. The real intelligence is waiting at the dining table—along with your next clue.",
-          next: "Dining Area"
-        },
-        "team zoom-in zoom-out": {
-          clue: "Twist alert: the family lunch has a villain at the table. Zoom in on the cutlery.",
-          next: "Dining Area"
-        },
-        "team what was that?": {
-          clue: "Poo never eats without drama. Check where the napkins are neatly folded.",
-          next: "Dining Area"
-        },
-        "team tax-free cricket": {
-          clue: "They played cricket for freedom. You just have to walk to the gate.",
-          next: "Entrance Gate"
-        }
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const o = document.getElementById('output');
+      const clueText = "The 1973 film that cemented Amitabh Bachchan’s ‘angry young man’ persona: ZANJEER.";
+      const answer = 'Z';
+      const nextMap = {
+        'team mustard missile':      'Estate Suite',
+        'team rawmance':             'Lounge / Fire Pit',
+        'team zoom-in zoom-out':     'Entrance Gate',
+        'team what was that?':       'Finish Line (return to Game Master)',
+        'team tax-free cricket':     'Lounge / Fire Pit'
       };
-
-      if (clues[team]) {
-        output.innerHTML = `<strong>Clue:</strong> ${clues[team].clue}<br><br><strong>Next Location:</strong> ${clues[team].next}`;
+      if (nextMap[t]) {
+        o.innerHTML = `<strong>Clue:</strong> ${clueText}` +
+                      `<br><br><strong>Crossword:</strong> ${answer}` +
+                      `<br><br><strong>Next QR Location:</strong> ${nextMap[t]}`;
       } else {
-        output.innerHTML = "<em>Team name not recognized. Please enter your exact team name as given.</em>";
+        o.innerHTML = '<em>Team name not recognized. Please enter exact team name.</em>';
       }
     }
   </script>
