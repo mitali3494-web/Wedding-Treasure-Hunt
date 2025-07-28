@@ -1,9 +1,8 @@
-<!-- Clue4.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Clue 4 – Sitla Treasure Hunt</title>
+  <title>Clue 4 – Sitla Treasure Hunt</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -39,170 +38,175 @@
       margin-top: 12px;
       display: inline-block;
     }
+    .error {
+      color: #b71c1c;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>✨ Clue 4 ✨</h1>
+  <h1>✨ Clue 4 ✨</h1>
   <p>Enter your team name:</p>
   <input id="team" placeholder="e.g. team mustard missile">
   <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
-    // Zero‑based index = 3 for the 4th clue
+    // Zero‑based index for Clue 4
     const pageIndex = 3;
 
-    // All teams' frozen routes (fixed length arrays)
+    // All teams' fixed routes
     const teamRoutes = {
-      'team mustard missile': [
+      "team mustard missile": [
         {
-          clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.',
-          next: 'Lounge / Fire Pit'
+          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
+          next: "Lounge / Fire Pit"
         },
         {
-          clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.',
-          next: 'Big Tree / Breakfast Area'
+          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
+          next: "Big Tree / Breakfast Area"
         },
         {
-          clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.',
-          next: 'Estate Suite',
+          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
+          next: "Estate Suite",
           photo2: true
         },
         {
-          clue: 'Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?',
-          next: 'Dining Area'
+          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
+          next: "Dining Area"
         },
         {
-          clue: 'She’s the queen of family dramas and over‑the‑top zoom‑ins.',
-          next: 'Entrance Gate'
+          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
+          next: "Entrance Gate"
         },
         {
-          clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.',
-          next: 'Finish Line (return to Game Master)',
+          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
+          next: "Finish Line (return to Game Master)",
           photo1: true
         }
       ],
-      'team rawmance': [
+      "team rawmance": [
         {
-          clue: 'Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?',
-          next: 'Dining Area'
+          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
+          next: "Dining Area"
         },
         {
-          clue: 'She’s the queen of family dramas and over‑the‑top zoom‑ins.',
-          next: 'Entrance Gate'
+          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
+          next: "Entrance Gate"
         },
         {
-          clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.',
-          next: 'Big Tree / Breakfast Area',
+          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
+          next: "Big Tree / Breakfast Area",
           photo1: true
         },
         {
-          clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.',
-          next: 'Lounge / Fire Pit',
+          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
+          next: "Lounge / Fire Pit",
           photo2: true
         },
         {
-          clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.',
-          next: 'Library'
+          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
+          next: "Library"
         },
         {
-          clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.',
-          next: 'Finish Line (return to Game Master)'
+          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
+          next: "Finish Line (return to Game Master)"
         }
       ],
-      'team zoom‑in zoom‑out': [
+      "team zoom-in zoom-out": [
         {
-          clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.',
-          next: 'Entrance Gate',
+          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
+          next: "Entrance Gate",
           photo2: true
         },
         {
-          clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.',
-          next: 'Lounge / Fire Pit',
+          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
+          next: "Lounge / Fire Pit",
           photo1: true
         },
         {
-          clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.',
-          next: 'Dining Area'
+          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
+          next: "Dining Area"
         },
         {
-          clue: 'She’s the queen of family dramas and over‑the‑top zoom‑ins.',
-          next: 'Library'
+          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
+          next: "Library"
         },
         {
-          clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.',
-          next: 'Estate Suite'
+          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
+          next: "Estate Suite"
         },
         {
-          clue: 'Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?',
-          next: 'Finish Line (return to Game Master)'
+          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
+          next: "Finish Line (return to Game Master)"
         }
       ],
-      'team what was that?': [
+      "team what was that?": [
         {
-          clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.',
-          next: 'Library',
+          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
+          next: "Library",
           photo1: true
         },
         {
-          clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.',
-          next: 'Estate Suite'
+          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
+          next: "Estate Suite"
         },
         {
-          clue: 'Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?',
-          next: 'Lounge / Fire Pit'
+          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
+          next: "Lounge / Fire Pit"
         },
         {
-          clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.',
-          next: 'Dining Area'
+          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
+          next: "Dining Area"
         },
         {
-          clue: 'She’s the queen of family dramas and over‑the‑top zoom‑ins.',
-          next: 'Big Tree / Breakfast Area'
+          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
+          next: "Big Tree / Breakfast Area"
         },
         {
-          clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.',
-          next: 'Finish Line (return to Game Master)',
+          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
+          next: "Finish Line (return to Game Master)",
           photo2: true
         }
       ],
-      'team tax‑free cricket': [
+      "team tax-free cricket": [
         {
-          clue: 'She’s the queen of family dramas and over‑the‑top zoom‑ins.',
-          next: 'Estate Suite'
+          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
+          next: "Estate Suite"
         },
         {
-          clue: 'Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?',
-          next: 'Library'
+          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
+          next: "Library"
         },
         {
-          clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.',
-          next: 'Entrance Gate'
+          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
+          next: "Entrance Gate"
         },
         {
-          clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.',
-          next: 'Big Tree / Breakfast Area',
+          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
+          next: "Big Tree / Breakfast Area",
           photo1: true
         },
         {
-          clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.',
-          next: 'Entrance Gate',
+          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
+          next: "Entrance Gate",
           photo2: true
         },
         {
-          clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.',
-          next: 'Finish Line (return to Game Master)'
+          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
+          next: "Finish Line (return to Game Master)"
         }
       ]
     };
 
     function reveal() {
-      const teamName = document.getElementById('team').value.trim().toLowerCase();
-      const outputEl = document.getElementById('out');
+      const teamInput = document.getElementById("team");
+      const teamName = teamInput.value.trim().toLowerCase();
+      const outputEl = document.getElementById("out");
       const route = teamRoutes[teamName];
 
       if (!route) {
-        outputEl.innerHTML = '<em>Team name not recognized.</em>';
+        outputEl.innerHTML = '<p class="error">Team name not recognized.</p>';
         return;
       }
 
@@ -220,6 +224,7 @@
                    <button>📸 Photo Task 2</button>
                  </a>`;
       }
+
       outputEl.innerHTML = html;
     }
   </script>
