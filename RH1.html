@@ -1,58 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Red Herring 1 - Sitla Treasure Hunt</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff0f5;
-      color: #333;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #cc0066;
-    }
-    input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #cc0066;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #ffe6f0;
-      border-left: 5px solid #cc0066;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>An Intermission of Intrigue | The Sitla Wedding Saga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* Keyframes for a touch of cinematic flair */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% { text-shadow: 0 0 6px rgba(206, 177, 128, 0.4); }
+            50% { text-shadow: 0 0 10px rgba(206, 177, 128, 0.7); }
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            /* A deep, cinematic teal background */
+            background-color: #001A1A;
+            background-image: linear-gradient(145deg, #013A3B 0%, #001A1A 100%);
+            color: #EAE0D5; /* A warm, parchment-like white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            padding: 40px 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(206, 177, 128, 0.5); /* Antique Gold */
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: fadeIn 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: #CEB180; /* Brighter Antique Gold for headings */
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            animation: subtleGlow 4s ease-in-out infinite;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: rgba(234, 224, 213, 0.85);
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 12px 15px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 16px;
+            font-family: 'Playfair Display', serif;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(206, 177, 128, 0.4);
+            border-radius: 5px;
+            color: #EAE0D5;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #CEB180;
+            box-shadow: 0 0 15px rgba(206, 177, 128, 0.2);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: transparent;
+            border: 2px solid #CEB180;
+            color: #CEB180;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #CEB180;
+            color: #001A1A;
+        }
+
+        .output {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed rgba(206, 177, 128, 0.4);
+            font-size: 1.1em;
+            font-style: italic;
+            line-height: 1.7;
+            display: none; /* Hidden by default, revealed by JS */
+        }
+        
+        .output strong {
+            font-style: normal;
+            font-family: 'Cinzel', serif;
+            color: #CEB180;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    </style>
 </head>
 <body>
-  <h1>❌Kitchen Drama ❌</h1>
-  <p>Enter your team name to unlock your destiny (or lunch):</p>
 
-  <input type="text" id="teamName" placeholder="Enter your team name">
-  <button onclick="revealFate()">Submit</button>
+<div class="container">
+    <h1>🎭 The Grand Deception 🎭</h1>
+    <p>A twist in the screenplay awaits. Announce your production house to see the next scene.</p>
 
-  <div class="output" id="output"></div>
+    <input type="text" id="teamName" placeholder="e.g., The Royal Storytellers">
+    <button onclick="revealFate()">Reveal the Scene</button>
 
-  <script>
+    <div class="output" id="output"></div>
+</div>
+
+<script>
     function revealFate() {
-      const team = document.getElementById("teamName").value.trim();
-      const output = document.getElementById("output");
-      output.innerHTML = `<strong>Mogambo khush nahin hua.</strong><br><br><em>This is not the clue you’re looking for. Try harder, drama queen.</em>`;
+        // No need to get the team name, the fate is the same for all who land here.
+        const output = document.getElementById("output");
+        
+        // A more poetic and dramatic reveal
+        output.innerHTML = `
+            <strong>A Classic Misdirection.</strong>
+            <span>The villain's laughter echoes from afar. This scene, however beautifully shot, is not part of your story. The true plot lies elsewhere. Retrace your steps, for your blockbuster awaits.</span>
+        `;
+        
+        // Animate the reveal
+        output.style.animation = 'fadeIn 1s ease-out forwards';
+        output.style.display = 'block';
     }
-  </script>
+</script>
 </body>
 </html>
