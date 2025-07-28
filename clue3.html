@@ -77,5 +77,63 @@
         { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Finish Line (return to Game Master)" }
       ],
       "team zoom-in zoom-out": [
-        { clue: "The 1973 film 
-::contentReference[oaicite:0]{index=0}
+        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Entrance Gate", photo2: true },
+        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Lounge / Fire Pit", photo1: true },
+        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Dining Area" },
+        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Library" },
+        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Estate Suite" },
+        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Finish Line (return to Game Master)" }
+      ],
+      "team what was that?": [
+        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Library", photo1: true },
+        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Estate Suite" },
+        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Lounge / Fire Pit" },
+        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Dining Area" },
+        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Big Tree / Breakfast Area" },
+        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Finish Line (return to Game Master)", photo2: true }
+      ],
+      "team tax-free cricket": [
+        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Estate Suite" },
+        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Library" },
+        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Entrance Gate" },
+        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Big Tree / Breakfast Area", photo1: true },
+        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Entrance Gate", photo2: true },
+        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Finish Line (return to Game Master)" }
+      ]
+    };
+
+    // Declare globally so onclick="reveal()" finds it
+    window.reveal = function() {
+      const name = document.getElementById("team").value.trim().toLowerCase();
+      const out  = document.getElementById("out");
+      const route = teamRoutes[name];
+
+      if (!route) {
+        out.innerHTML = '<p class="error">❌ Team name not recognized.</p>';
+        return;
+      }
+
+      const step = route[pageIndex];
+      let html = `<p><strong>Clue:</strong> ${step.clue}</p>`;
+      html += `<p><strong>Next QR Location:</strong> ${step.next}</p>`;
+
+      if (step.photo1) {
+        html += `<div class="photo-btn">
+                   <button onclick="location.href='phototask1.html?team=${encodeURIComponent(name)}'">
+                     📸 Photo Task 1
+                   </button>
+                 </div>`;
+      }
+      if (step.photo2) {
+        html += `<div class="photo-btn">
+                   <button onclick="location.href='phototask2.html?team=${encodeURIComponent(name)}'">
+                     📸 Photo Task 2
+                   </button>
+                 </div>`;
+      }
+
+      out.innerHTML = html;
+    };
+  </script>
+</body>
+</html>
