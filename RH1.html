@@ -2,122 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>An Intermission of Intrigue | The Sitla Wedding Saga</title>
+    <title>An Elegant Trap | Courtesy of Shaakal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Cinzel:wght@800&display=swap" rel="stylesheet">
     <style>
-        /* Keyframes for a touch of cinematic flair */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(0, 191, 255, 0.3); box-shadow: 0 0 10px rgba(0, 191, 255, 0.2); }
+            50% { border-color: rgba(0, 191, 255, 0.8); box-shadow: 0 0 25px rgba(0, 191, 255, 0.5); }
+            100% { border-color: rgba(0, 191, 255, 0.3); box-shadow: 0 0 10px rgba(0, 191, 255, 0.2); }
         }
 
-        @keyframes subtleGlow {
-            0%, 100% { text-shadow: 0 0 6px rgba(206, 177, 128, 0.4); }
-            50% { text-shadow: 0 0 10px rgba(206, 177, 128, 0.7); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         body {
-            font-family: 'Playfair Display', serif;
-            /* A deep, cinematic teal background */
-            background-color: #001A1A;
-            background-image: linear-gradient(145deg, #013A3B 0%, #001A1A 100%);
-            color: #EAE0D5; /* A warm, parchment-like white */
+            font-family: 'Roboto Mono', monospace;
+            /* The cold, dark blue of a high-tech lair screen */
+            background-color: #0d1117; 
+            color: #c9d1d9; /* Off-white data text */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            box-sizing: border-box;
         }
 
         .container {
-            max-width: 650px;
+            max-width: 700px;
             width: 100%;
-            padding: 40px 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(206, 177, 128, 0.5); /* Antique Gold */
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 50px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 2px solid rgba(0, 191, 255, 0.3); /* Deep Sky Blue */
+            backdrop-filter: blur(5px);
             text-align: center;
-            animation: fadeIn 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+            animation: fadeIn 1.5s ease-out, pulseBorder 5s ease-in-out infinite;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
-            color: #CEB180; /* Brighter Antique Gold for headings */
+            font-weight: 800;
+            color: #00BFFF; /* Deep Sky Blue accent */
             font-size: 2.8em;
-            margin-bottom: 15px;
+            margin: 0 0 25px 0;
             letter-spacing: 2px;
-            animation: subtleGlow 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
         }
 
         p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: rgba(234, 224, 213, 0.85);
-            margin-bottom: 30px;
-        }
-
-        input[type="text"] {
-            padding: 12px 15px;
-            width: 100%;
-            margin-top: 10px;
-            font-size: 16px;
-            font-family: 'Playfair Display', serif;
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(206, 177, 128, 0.4);
-            border-radius: 5px;
-            color: #EAE0D5;
-            box-sizing: border-box;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #CEB180;
-            box-shadow: 0 0 15px rgba(206, 177, 128, 0.2);
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 12px 30px;
-            background-color: transparent;
-            border: 2px solid #CEB180;
-            color: #CEB180;
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        button:hover {
-            background-color: #CEB180;
-            color: #001A1A;
-        }
-
-        .output {
-            margin-top: 35px;
-            padding-top: 25px;
-            border-top: 1px dashed rgba(206, 177, 128, 0.4);
-            font-size: 1.1em;
-            font-style: italic;
-            line-height: 1.7;
-            display: none; /* Hidden by default, revealed by JS */
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin: 20px 0;
         }
         
-        .output strong {
-            font-style: normal;
-            font-family: 'Cinzel', serif;
-            color: #CEB180;
-            font-size: 1.3em;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 10px;
+        .highlight {
+            color: #00BFFF;
+            font-weight: 700;
+        }
+
+        .final-taunt {
+            margin-top: 40px;
+            font-size: 1.25em;
+            font-style: italic;
+            color: #c9d1d9;
+        }
+
+        .final-taunt .highlight {
+           font-style: normal;
         }
 
     </style>
@@ -125,30 +78,14 @@
 <body>
 
 <div class="container">
-    <h1>🎭 The Grand Deception 🎭</h1>
-    <p>A twist in the screenplay awaits. Announce your production house to see the next scene.</p>
+    <h1>My Congratulations...</h1>
+    
+    <p>Impressive. Truly. To have navigated the labyrinth and arrived at this precise, calculated dead end.</p>
+    
+    <p>This location, you see, was not a clue. It was a test of your <span class="highlight">predictability</span>. A data point. While you were diligently following this meticulously crafted path to nowhere, my other... less predictable... opponents have advanced.</p>
 
-    <input type="text" id="teamName" placeholder="e.g., The Royal Storytellers">
-    <button onclick="revealFate()">Reveal the Scene</button>
-
-    <div class="output" id="output"></div>
+    <p class="final-taunt">My sharks are getting hungry just thinking about the final race. Don't keep them <span class="highlight">waiting</span>.</p>
 </div>
 
-<script>
-    function revealFate() {
-        // No need to get the team name, the fate is the same for all who land here.
-        const output = document.getElementById("output");
-        
-        // A more poetic and dramatic reveal
-        output.innerHTML = `
-            <strong>A Classic Misdirection.</strong>
-            <span>The villain's laughter echoes from afar. This scene, however beautifully shot, is not part of your story. The true plot lies elsewhere. Retrace your steps, for your blockbuster awaits.</span>
-        `;
-        
-        // Animate the reveal
-        output.style.animation = 'fadeIn 1s ease-out forwards';
-        output.style.display = 'block';
-    }
-</script>
 </body>
 </html>
