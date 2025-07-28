@@ -1,35 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Red Herring 3 - Go Back!</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fefefe;
-      color: #222;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #aa0000;
-    }
-    .message {
-      margin-top: 20px;
-      background-color: #fff4f4;
-      padding: 20px;
-      border-left: 5px solid #aa0000;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>KHAALI PEELI TIMEPAAS MAT KAR! - Baburao</title>
+    <style>
+        /* Yeh Baburao ka CSS style hai! */
+        @keyframes blink {
+            50% { color: #FFFF00; }
+        }
+
+        body {
+            font-family: "Comic Sans MS", "Arial", sans-serif; /* Seedha saadha font! */
+            background-color: #FFFF00; /* Aankh mein chubhne wala yellow! */
+            color: #00008B; /* Dark Blue! */
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: #90EE90; /* Woh light green, sasta wala! */
+            border: 5px double red;
+            padding: 15px;
+        }
+
+        h1 {
+            color: #FF0000;
+            font-family: "Impact", "Arial Black", sans-serif;
+            font-size: 48px;
+            text-align: center;
+            animation: blink 1s linear infinite; /* Blink-blink karne ka! */
+            text-shadow: 2px 2px #000;
+        }
+        
+        .image-div {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .baburao-pic {
+            width: 200px;
+            border: 4px solid #00008B;
+            border-radius: 50%; /* Gol-gol! */
+        }
+
+        .message {
+            margin-top: 20px;
+            background-color: #ADD8E6; /* Ek aur color! Light blue! */
+            padding: 20px;
+            border: 3px solid #000;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .message p {
+            margin: 15px 0;
+        }
+        
+        .warning {
+            font-weight: bold;
+            color: #D30000;
+            font-size: 22px;
+        }
+        
+        .signature {
+            font-style: italic;
+            text-align: right;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+    </style>
 </head>
 <body>
-  <h1>⚠️Seriously? ⚠️</h1>
-  <div class="message">
-    <p><strong>Why are you here?</strong></p>
-    <p>You really thought this was something? Fool.</p>
-    <p>There’s absolutely nothing here except your wasted time and this fake clue. Go back to the hunt before someone else wins.</p>
-    <p><em>This message will self-destruct in... just kidding. It won’t. But your chances might.</em></p>
-  </div>
+    <div class="container">
+        <h1>AEEYYY! IDHAR KYA HAI?!</h1>
+
+        <div class="image-div">
+            <img src="https://i.imgflip.com/6h25qg/baburao-angry.jpg" alt="Baburao Angry" class="baburao-pic">
+        </div>
+        
+        <div class="message">
+            <p class="warning">Utha le re Deva... Utha le... mereko nahi, isko utha le jo yahan aaya hai!</p>
+            
+            <p><strong>Mera khopdi satak gaya hai!</strong> Isko clue samjha kya, ay shyam? Idhar ghanta kuch nahi hai!</p>
+            
+            <p>Chappal nikal ke marunga! Sirf tera aur mera, dono ka time kharaab ho raha hai. Woh dusre log jeet jayenge aur tu yahan baith ke mera chehra dekhega kya? Chal phut!</p>
+            
+            <p><em>Yeh message phatega nahi... lekin tera khopdi zaroor phat jayega agar yahan ruka toh! Ja re jaa!</em></p>
+            
+            <p class="signature">- Baburao Ganpatrao Apte</p>
+        </div>
+    </div>
 </body>
 </html>
