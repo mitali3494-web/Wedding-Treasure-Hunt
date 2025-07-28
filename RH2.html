@@ -1,71 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Red Herring 2 - Cookie Challenge</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fffbea;
-      color: #333;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      color: #d2691e;
-    }
-    input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #d2691e;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .output {
-      margin-top: 25px;
-      padding: 15px;
-      background-color: #fff0d9;
-      border-left: 5px solid #d2691e;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>An Interlude of Sophistication - A Maya Sarabhai Evaluation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #F5F5DC; /* A refined beige, of course. */
+            color: #333333; /* A soft, intelligent charcoal. */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 90%;
+            padding: 40px 50px;
+            background: #FFFFFF;
+            border: 1px solid #D8BFD8; /* A whisper of thistle. */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 2.5em;
+            color: #333333;
+            margin: 0;
+        }
+        
+        h1 + p { /* The subtitle */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9em;
+            color: #888;
+            font-style: italic;
+            margin-top: 5px;
+            margin-bottom: 30px;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .riddle-box {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #F8F8F8;
+            border: 1px dashed #D8BFD8;
+            border-radius: 4px;
+        }
+
+        .riddle-box p {
+            font-size: 1.25em;
+            line-height: 1.7;
+            font-style: italic;
+            margin: 0;
+        }
+
+        input[type="text"] {
+            font-family: 'Montserrat', sans-serif;
+            padding: 12px;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #D8BFD8;
+        }
+
+        button {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #333333;
+            border: 1px solid #333333;
+            color: #FFFFFF;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FFFFFF;
+            color: #333333;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #F8F8F8;
+            border-left: 5px solid #D8BFD8;
+            text-align: left;
+            font-size: 1.1em;
+            display: none; /* Revealed with panache */
+        }
+        
+        .output strong {
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+    </style>
 </head>
 <body>
-  <h1>☕Cookie Challenge ☕</h1>
-  <p>This clue has *absolutely nothing* to do with the game. But if you answer it correctly, you win a cookie. Literally.</p>
 
-  <p><strong>Riddle:</strong><br>
-  I appear in scenes with chai and rain,<br>
-  A biscuit’s soulmate, simple and plain.<br>
-  Dip me once, don't let me fall—<br>
-  I break your heart when I break at all.<br>
-  <em>What am I?</em>
-  </p>
+<div class="container">
+    <h1>The Connoisseur's Conundrum</h1>
+    <p>(It's a riddle, Monisha, not a "guess-guess" game.)</p>
 
-  <input type="text" id="cookieAnswer" placeholder="Your answer here">
-  <button onclick="checkCookieAnswer()">Submit</button>
+    <p class="intro">While the main event is momentarily paused for the culturally challenged, let's take a moment to evaluate your sense of taste. This has absolutely nothing to do with that... *common* treasure hunt. This is a test of true refinement.</p>
 
-  <div class="output" id="output"></div>
+    <div class="riddle-box">
+        <p>I am born of Tuscan sun, a hard but elegant creation,<br>
+        Twice-baked with almonds, for caffeinated conversation.<br>
+        I don't crumble in espresso, that's a plebeian's mistake,<br>
+        I soften with grace, for goodness' sake.<br>
+        <em>What am I?</em></p>
+    </div>
 
-  <script>
-    function checkCookieAnswer() {
-      const answer = document.getElementById("cookieAnswer").value.trim().toLowerCase();
-      const output = document.getElementById("output");
+    <input type="text" id="refinedAnswer" placeholder="Enlighten me with your answer...">
+    <button onclick="passJudgement()">Present Your Verdict</button>
 
-      if (answer === "parle-g" || answer === "parle g") {
-        output.innerHTML = `<strong>🍪 Correct!</strong><br><br>You win a cookie! Show this screen to the Game Master and claim your reward.`;
-      } else {
-        output.innerHTML = `<strong>❌ Nope!</strong><br><br>Nice try, but that's not the dunkable we’re looking for.`;
-      }
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    function passJudgement() {
+        const answer = document.getElementById("refinedAnswer").value.trim().toLowerCase();
+        const output = document.getElementById("output");
+        output.style.display = 'block'; // One must always make an entrance.
+
+        if (answer === "biscotti" || answer === "biscotto") {
+            output.innerHTML = `<strong>🍪 Oh, impressive!</strong><br><br>Your palate isn't as pedestrian as I'd presumed. You may show this to the Game Master to claim a small token of my approval. It's a <em>biscotto</em>, darling, not a "cookie".`;
+            output.style.borderColor = '#A7D7C5'; /* A sophisticated seafoam green for success */
+        } else {
+            output.innerHTML = `<strong>❌ Oh, darling. No.</strong><br><br>That is so categorically middle-class. It seems your taste requires significant... cultivation. Perhaps subscribe to an international culinary journal?`;
+            output.style.borderColor = '#E0B4B4'; /* A dusty, disappointed rose */
+        }
     }
-  </script>
+</script>
+
 </body>
 </html>
