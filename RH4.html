@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anomaly Detected | Sitla Treasure Hunt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Cinzel:wght@800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Core Styles (from the 'Shaakal's Lair' theme) --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #0d1117; 
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            padding: 50px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            backdrop-filter: blur(5px);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 800;
+            color: #00BFFF;
+            font-size: 2.8em;
+            margin: 0 0 25px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* --- Glitch & Time Warp Effects --- */
+        .glitch {
+            animation: glitch-animation 0.5s infinite;
+        }
+
+        @keyframes glitch-animation {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        .glitch h1, .glitch p {
+            text-shadow: 0.05em 0 0 #ff003c, -0.05em 0 0 #00ff73;
+        }
+
+        /* Scan lines overlay for a retro-tech feel */
+        .container::after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3) 1px, transparent 1px, transparent 3px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container" id="warp-container">
+    <h1 id="main-heading">Clue 7</h1>
+    <div id="content-area">
+        <p>You’ve traveled far, it seems, beyond the flow of standard streams.</p>
+        <p>I hold the moments yet to pass, a future seen through digital glass.<br>Solve me now, though your time isn't here...</p>
+        <p><em>What am I?</em></p>
+    </div>
+</div>
+
+<audio id="glitch-sound" preload="auto">
+  <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=" type="audio/wav">
+</audio>
+
+
+<script>
+    // This script will trigger the time warp effect after a delay.
+    window.onload = function() {
+        const DELAY_BEFORE_GLITCH = 3500; // 3.5 seconds to let them read and panic
+        const GLITCH_DURATION = 800;      // 0.8 seconds of glitching effect
+
+        const container = document.getElementById('warp-container');
+        const heading = document.getElementById('main-heading');
+        const content = document.getElementById('content-area');
+        const glitchSound = document.getElementById('glitch-sound');
+
+        // Function to trigger the visual and audio glitch
+        function startGlitch() {
+            container.classList.add('glitch');
+            glitchSound.play();
+        }
+
+        // Function to reveal the true nature of the trap
+        function revealTrap() {
+            container.classList.remove('glitch');
+            
+            heading.style.color = '#ff4d4d'; // Change color to an "error" red
+            heading.innerHTML = "SYSTEM ERROR";
+            
+            content.innerHTML = `
+                <p><strong>TIME ANOMALY DETECTED</strong></p>
+                <p>Don't adjust your timeline. You've stumbled into a future that doesn't exist yet.</p>
+                <p>This is a Time Warp trap, designed to derail the impatient.</p>
+                <p>Return to your correct path. Your real clue is waiting for you... <em>in the present.</em></p>
+            `;
+        }
+
+        // Set the sequence in motion
+        setTimeout(startGlitch, DELAY_BEFORE_GLITCH);
+        setTimeout(revealTrap, DELAY_BEFORE_GLITCH + GLITCH_DURATION);
+    };
+</script>
+
+</body>
+</html>
