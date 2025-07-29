@@ -30,7 +30,7 @@
             width: 100%;
             padding: 50px;
             background: rgba(13, 17, 23, 0.8);
-            border: 2px solid rgba(0, 191, 255, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.3); /* Deep Sky Blue */
             backdrop-filter: blur(5px);
             text-align: center;
             animation: fadeIn 1.5s ease-out;
@@ -108,8 +108,10 @@
 <script>
     // This script will trigger the time warp effect after a delay.
     window.onload = function() {
-        const DELAY_BEFORE_GLITCH = 3500; // 3.5 seconds to let them read and panic
-        const GLITCH_DURATION = 800;      // 0.8 seconds of glitching effect
+        // --- TIMING ADJUSTED HERE ---
+        const DELAY_BEFORE_GLITCH = 7000; // 7 seconds - extended time for reading and confusion
+        const GLITCH_DURATION = 1000;     // 1 second of glitching effect
+        // -----------------------------
 
         const container = document.getElementById('warp-container');
         const heading = document.getElementById('main-heading');
@@ -136,12 +138,3 @@
                 <p>Return to your correct path. Your real clue is waiting for you... <em>in the present.</em></p>
             `;
         }
-
-        // Set the sequence in motion
-        setTimeout(startGlitch, DELAY_BEFORE_GLITCH);
-        setTimeout(revealTrap, DELAY_BEFORE_GLITCH + GLITCH_DURATION);
-    };
-</script>
-
-</body>
-</html>
