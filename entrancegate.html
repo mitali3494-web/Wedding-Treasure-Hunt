@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Filmy Scene | M&S Wedding Hunt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
+
+        body { font-family: 'Caveat', cursive; background-color: #fdf5e6; color: #4a2c2a; padding: 20px; font-size: 18px; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .container { max-width: 600px; width: 100%; background: #fff; border: 2px dashed #ffc0cb; padding: 30px 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); animation: popIn 1s ease-out; text-align: center; }
+        h1 { font-family: 'Lobster', cursive; color: #e55a8a; font-size: 2.8em; margin: 0 0 20px 0; }
+        p.prompt { font-size: 1.3em; font-weight: 700; }
+        input { font-family: 'Caveat', cursive; padding: 12px; width: 100%; margin-top: 5px; margin-bottom: 15px; font-size: 20px; box-sizing: border-box; border: 2px solid #ddd; border-radius: 10px; text-align: center; text-transform: uppercase; }
+        button { padding: 12px 35px; font-family: 'Lobster', cursive; font-size: 24px; background-color: #32cd99; color: white; text-decoration: none; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 0px #2ca880; transition: all 0.1s ease-in-out; width: 100%; }
+        button:hover { transform: translateY(2px); box-shadow: 0 2px 0px #2ca880; }
+        button:disabled { background-color: #999; box-shadow: 0 4px 0px #777; cursor: not-allowed; }
+        .output { margin-top: 25px; padding: 20px; background-color: #e6f7ff; border: 1px solid #b3e0ff; border-radius: 10px; min-height: 100px; text-align: left; font-size: 1.25em; line-height: 1.6; }
+        .output strong { color: #0077b3; }
+        .output .final-info { animation: fadeIn 1s; }
+        .typewriter-text::after { content: '▍'; animation: blink 1s step-end infinite; color: #4a2c2a; }
+        .photo-btn button { width: auto; background-color: #e55a8a; box-shadow: 0 4px 0px #c44a75; }
+        .photo-btn button:hover { box-shadow: 0 2px 0px #c44a75; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="location-title"></h1>
+    <p class="prompt">Enter your 3-Letter Team Code:</p>
+    <input id="team-code" placeholder="E.G., TMM" maxlength="4">
+    <button id="submit-button" onclick="reveal()">Unlock the Scene!</button>
+    <div class="output" id="out"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+    // --- ⬇️ ⬇️ CHANGE THIS ONE VARIABLE FOR EACH LOCATION'S FILE ⬇️ ⬇️ ---
+    const thisLocation = "The Lounge / Fire Pit"; // This MUST match a 'location' in the data below
+    // --- ⬆️ ⬆️ THAT'S IT! The rest is automatic! ⬆️ ⬆️ ---
+
+    document.getElementById('location-title').innerText = `🎬 Scene: ${thisLocation} 🎬`;
+
+    // NEW: The Team Code Directory
+    const teamCodeMap = {
+      'tmm': 'team mustard missile',
+      'raw': 'team rawmance',
+      'zio': 'team zoom-in zoom-out',
+      'wwt': 'team what was that?',
+      'tfc': 'team tax-free cricket'
+    };
+
+    // IMPORTANT: Your "brain" data. Make sure each step has a unique 'location' for that team's path.
+    const teamRoutes = {
+      'team mustard missile': [
+        {location: 'Lounge / Fire Pit', clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Big Tree / Breakfast Area'},
+        {location: 'Big Tree / Breakfast Area', clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Estate Suite'},
+        {location: 'Estate Suite', clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Dining Area', photo2:true},
+        {location: 'Dining Area', clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Entrance Gate'},
+        {location: 'Entrance Gate', clue:'She’s the queen of family dramas and over-the-top zoom-ins.', next:'Finish Line (return to Game Master)'},
+        {location: 'Orchard', clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next:'Finish Line (return to Game Master)', photo1:true}
+      ],
+      'team rawmance': [
+        {location: 'Dining Area', clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Entrance Gate'},
+        {location: 'Entrance Gate', clue:'She’s the queen of family dramas and over-the-top zoom-ins.', next:'Big Tree / Breakfast Area'},
+        {location: 'Big Tree / Breakfast Area', clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.', next:'Lounge / Fire Pit', photo1:true},
+        {location: 'Lounge / Fire Pit', clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Library', photo2:true},
+        {location: 'Library', clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Finish Line (return to Game Master)'},
+        {location: 'Estate Suite', clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Finish Line (return to Game Master)'}
+      ],
+      // ... Paste the rest of your complete team routes data here
+    };
+
+    function typewriter(text, targetElement, callback) {
+        let i = 0;
+        targetElement.innerHTML = "";
+        targetElement.classList.add('typewriter-text');
+        const interval = setInterval(() => {
+            if (i < text.length) {
+                targetElement.innerHTML += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(interval);
+                targetElement.classList.remove('typewriter-text');
+                if (callback) callback();
+            }
+        }, 40);
+    }
+
+    function triggerConfetti() {
+        if (typeof confetti === 'function') {
+            confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+        }
+    }
+
+    function reveal(){
+      const shortCode = document.getElementById('team-code').value.trim().toLowerCase();
+      const outputDiv = document.getElementById('out');
+      const submitButton = document.getElementById('submit-button');
+
+      submitButton.disabled = true;
+      submitButton.innerText = "Unlocking...";
+      outputDiv.innerHTML = ''; 
+
+      const fullTeamName = teamCodeMap[shortCode];
+      
+      if (!fullTeamName) {
+        outputDiv.innerHTML='<p><em>That team code is not recognized. Please check it and try again!</em></p>';
+        submitButton.disabled = false;
+        submitButton.innerText = "Unlock the Scene!";
+        return;
+      }
+
+      const route = teamRoutes[fullTeamName];
+      let currentStep = null;
+
+      for (const step of route) {
+          if (step.location.trim().toLowerCase() === thisLocation.trim().toLowerCase()) {
+              currentStep = step;
+              break;
+          }
+      }
+
+      if (!currentStep) {
+          outputDiv.innerHTML = `<p><em>Wait a minute... according to our script, your team isn't supposed to be at the ${thisLocation} right now! Are you on the right path?</em></p>`;
+          submitButton.disabled = false;
+          submitButton.innerText = "Unlock the Scene!";
+          return;
+      }
+      
+      const clueText = `<strong>The Riddle:</strong> ${currentStep.clue}`;
+      const clueElement = document.createElement('p');
+      outputDiv.appendChild(clueElement);
+      
+      typewriter(clueText, clueElement, () => {
+        triggerConfetti();
+        const finalInfo = document.createElement('div');
+        finalInfo.classList.add('final-info');
+        let html = `<br><p><strong>Next Location:</strong> ${currentStep.next}</p>`;
+        if(currentStep.photo1) { html += `<div class="photo-btn"><a href="phototask1.html?team=${encodeURIComponent(fullTeamName)}"><button>📸 Photo Task 1</button></a></div>`; }
+        if(currentStep.photo2) { html += `<div class="photo-btn"><a href="phototask2.html?team=${encodeURIComponent(fullTeamName)}"><button>📸 Photo Task 2</button></a></div>`; }
+        finalInfo.innerHTML = html;
+        outputDiv.appendChild(finalInfo);
+      });
+    }
+</script>
+
+</body>
+</html>
