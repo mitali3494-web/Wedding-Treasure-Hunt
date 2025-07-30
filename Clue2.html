@@ -1,75 +1,23 @@
+<!-- Clue2.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Clue 2 – Sitla Treasure Hunt</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'VT323', monospace;
-      background-color: #e0b6f5; /* Pastel Purple */
-      color: #2c003e;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      font-size: 22px;
-    }
-    h1 {
-      font-family: 'Press Start 2P', cursive;
-      color: #f72585; /* Neon Pink */
-      text-align: center;
-      font-size: 28px;
-      text-shadow: 
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 15px #f72585,
-        3px 3px 0 #4cc9f0; /* Pink glow with a Teal drop-shadow */
-    }
-    input, button {
-      padding: 12px;
-      font-size: 18px;
-      width: 100%;
-      box-sizing: border-box;
-      font-family: 'VT323', monospace;
-      border: 2px solid #2c003e;
-      border-radius: 0; /* Sharp 90s edges */
-    }
-    input {
-      background-color: #faf0ff;
-      color: #2c003e;
-    }
-    button {
-      background-color: #4cc9f0; /* Bright Teal */
-      color: #2c003e;
-      border: 2px solid #2c003e;
-      cursor: pointer;
-      margin-top: 10px;
-      font-weight: bold;
-      box-shadow: 3px 3px 0 #2c003e; /* 3D effect */
-      transition: all 0.1s ease-in-out;
-    }
-    button:hover {
-      transform: translate(3px, 3px);
-      box-shadow: none;
-    }
-    .output {
-      margin-top: 20px;
-      padding: 15px;
-      background: #faf0ff;
-      border: 2px dashed #f72585;
-      line-height: 1.6;
-    }
-    .photo-btn button {
-        background-color: #f72585; /* Match heading color */
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { background-color: #ff66b3; color: #fff; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
+    .photo-btn { margin-top: 12px; display: inline-block; }
   </style>
 </head>
 <body>
-  <h1>✨ Mitali and Shantanu's Wedding Treasure Hunt ✨</h1>
+  <h1>✨ Clue 2 ✨</h1>
   <p>Enter your team name:</p>
-  <input id="team"> <button onclick="reveal()">Submit 🚀</button>
+  <input id="team" placeholder="e.g. team mustard missile">
+  <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
@@ -80,13 +28,19 @@
       'team mustard missile': [
         {clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.', next: 'Lounge / Fire Pit'},
         {clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next: 'Big Tree / Breakfast Area'},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona: ZANJEER.', next: 'Estate Suite', photo2: true},
         {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona', next: 'Estate Suite', photo2: true},
         {clue: 'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next: 'Dining Area'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.', next: 'Entrance Gate'},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello was titled “OMKARA.”', next: 'Finish Line (return to Game Master)', photo1: true}
         {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s', next: 'Entrance Gate'},
         {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello”', next: 'Finish Line (return to Game Master)', photo1: true}
       ],
       'team rawmance': [
         {clue: 'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next: 'Dining Area'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.', next: 'Entrance Gate'},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello was titled “OMKARA.”', next: 'Big Tree / Breakfast Area', photo1: true},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona: ZANJEER.', next: 'Lounge / Fire Pit', photo2: true},
         {clue: 'She’s the queen of family dramas and over-the-top zoom-ins', next: 'Entrance Gate'},
         {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next: 'Big Tree / Breakfast Area', photo1: true},
         {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man.', next: 'Lounge / Fire Pit', photo2: true},
@@ -94,4 +48,58 @@
         {clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.', next: 'Finish Line (return to Game Master)'}
       ],
       'team zoom-in zoom-out': [
-        {cl
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona: ZANJEER.', next: 'Entrance Gate', photo2: true},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello was titled “OMKARA.”', next: 'Lounge / Fire Pit', photo1: true},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next: 'Entrance Gate', photo2: true},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next: 'Lounge / Fire Pit', photo1: true},
+        {clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next: 'Dining Area'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.', next: 'Library'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins', next: 'Library'},
+        {clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.', next: 'Estate Suite'},
+        {clue: 'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next: 'Finish Line (return to Game Master)'}
+      ],
+      'team what was that?': [
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello was titled “OMKARA.”', next: 'Library', photo1: true},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next: 'Library', photo1: true},
+        {clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.', next: 'Estate Suite'},
+        {clue: 'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next: 'Lounge / Fire Pit'},
+        {clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next: 'Dining Area'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.', next: 'Big Tree / Breakfast Area'},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona: ZANJEER.', next: 'Finish Line (return to Game Master)', photo2: true}
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins', next: 'Big Tree / Breakfast Area'},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona', next: 'Finish Line (return to Game Master)', photo2: true}
+      ],
+      'team tax-free cricket': [
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins—Kapoor’s first name is EKTA.', next: 'Estate Suite'},
+        {clue: 'She’s the queen of family dramas and over-the-top zoom-ins.', next: 'Estate Suite'},
+        {clue: 'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next: 'Library'},
+        {clue: 'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.', next: 'Entrance Gate'},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello was titled “OMKARA.”', next: 'Big Tree / Breakfast Area', photo1: true},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona: ZANJEER.', next: 'Entrance Gate', photo2: true},
+        {clue: 'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next: 'Big Tree / Breakfast Area', photo1: true},
+        {clue: 'The 1973 film that cemented Amitabh Bachchan’s angry young man persona', next: 'Entrance Gate', photo2: true},
+        {clue: 'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next: 'Finish Line (return to Game Master)'}
+      ]
+    };
+
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const o = document.getElementById('out');
+      const route = teamRoutes[t];
+      if (!route) {
+        o.innerHTML = '<em>Team name not recognized.</em>';
+        return;
+      }
+      const step = route[pageIndex];
+      let html = `<strong>Clue:</strong> ${step.clue}<br><br><strong>Next QR Location:</strong> ${step.next}`;
+      if (step.photo1) {
+        html += `<br><br><a href="phototask1.html" class="photo-btn"><button>📸 Photo Task 1</button></a>`;
+      }
+      if (step.photo2) {
+        html += `<br><br><a href="phototask2.html" class="photo-btn"><button>📸 Photo Task 2</button></a>`;
+      }
+      o.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
