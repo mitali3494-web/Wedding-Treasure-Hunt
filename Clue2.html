@@ -2,30 +2,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Clue 2 – Sitla Treasure Hunt</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333;
-           padding: 20px; max-width: 600px; margin: auto; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
     h1 { color: #b30059; }
-    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
-    button { background-color: #ff66b3; color: #fff; border: none; cursor: pointer; margin-top: 10px; }
-    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #ff66b3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
   </style>
 </head>
 <body>
   <h1>✨ Clue 2 ✨</h1>
-  <p>Scan the QR at your first location, then enter your team name:</p>
-  <input id="team" placeholder="e.g. team mustard missile">
+  <p>Scan the QR at your first location (as directed by Clue 1), then enter your team name:</p>
+  <input id="team" placeholder="e.g. team mustard missile" />
   <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
-    // Second clue text (no answer shown)
+    // Clue text for the mustard-field riddle (answer hidden)
     const clueText = 
       'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.';
 
-    // Next QR location per team (Step 2)
+    // Step 2 mapping: each team’s second QR location
     const nextLocations = {
       'team mustard missile':   'Estate Suite',
       'team rawmance':          'Lounge / Fire Pit',
@@ -38,12 +60,10 @@
       const t = document.getElementById('team').value.trim().toLowerCase();
       const out = document.getElementById('out');
       const loc = nextLocations[t];
-
       if (!loc) {
         out.innerHTML = '<em>Team name not recognized. Please enter exactly as given.</em>';
         return;
       }
-
       out.innerHTML =
         `<strong>Clue:</strong> ${clueText}` +
         `<br><br><strong>Next QR Location:</strong> ${loc}`;
