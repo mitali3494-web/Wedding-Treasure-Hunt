@@ -2,72 +2,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Clue 1 - Sitla Treasure Hunt</title>
+  <meta charset="UTF-8" />
+  <title>Clue 1 – Sitla Treasure Hunt</title>
   <style>
-    body{font-family:'Segoe UI',sans-serif;background:#fff7e6;color:#333;padding:20px;max-width:600px;margin:auto;}
-    h1{color:#b30059;} input,button{padding:10px;font-size:16px;width:100%;box-sizing:border-box;}
-    button{background:#ff66b3;color:#fff;border:none;cursor:pointer;margin-top:10px;}
-    .output{margin-top:20px;padding:15px;background:#ffe6f0;border-left:4px solid #b30059;}.photo-btn{margin-top:12px;}
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333;
+           padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { background-color: #ff66b3; color: #fff; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
   </style>
 </head>
 <body>
-  <h1>✨ Clue 1 ✨</h1>
-  <p>Enter your team name:</p>
-  <input id="team"><button onclick="reveal()">Submit</button>
+  <h1>✨ Clue 1 ✨</h1>
+  <p>The host hands you this clue. Enter your team name to see where to scan your first QR code:</p>
+  <input id="team" placeholder="e.g. team mustard missile" />
+  <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
+
   <script>
-    const pageIndex = 0;
-    const teamRoutes = {
-      'team mustard missile': [
-        {clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Lounge / Fire Pit'},
-        {clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Big Tree / Breakfast Area'},
-        {clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Estate Suite', photo2:true},
-        {clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Dining Area'},
-        {clue:'She’s the queen of family dramas and over-the-top zoom-ins.', next:'Entrance Gate'},
-        {clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next:'Finish Line (return to Game Master)', photo1:true}
-      ],
-      'team rawmance': [
-        {clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Dining Area'},
-        {clue:'She’s the queen of family dramas and over-the-top zoom-ins.', next:'Entrance Gate'},
-        {clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.’', next:'Big Tree / Breakfast Area', photo1:true},
-        {clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man.', next:'Lounge / Fire Pit', photo2:true},
-        {clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Library'},
-        {clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Finish Line (return to Game Master)'}
-      ],
-      'team zoom-in zoom-out': [
-        {clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Entrance Gate', photo2:true},
-        {clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello', next:'Lounge / Fire Pit', photo1:true},
-        {clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Dining Area'},
-        {clue:'She’s the queen of family dramas and over-the-top zoom-ins', next:'Library'},
-        {clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Estate Suite'},
-        {clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Finish Line (return to Game Master)'}
-      ],
-      'team what was that?': [
-        {clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello’', next:'Library', photo1:true},
-        {clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Estate Suite'},
-        {clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Lounge / Fire Pit'},
-        {clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Dining Area'},
-        {clue:'She’s the queen of family dramas and over-the-top zoom-ins.', next:'Big Tree / Breakfast Area'},
-        {clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Finish Line (return to Game Master)', photo2:true}
-      ],
-      'team tax-free cricket': [
-        {clue:'She’s the queen of family dramas and over-the-top zoom-ins', next:'Estate Suite'},
-        {clue:'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?', next:'Library'},
-        {clue:'Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants ‘peace’ twice.', next:'Entrance Gate'},
-        {clue:'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello’', next:'Big Tree / Breakfast Area', photo1:true},
-        {clue:'The 1973 film that cemented Amitabh Bachchan’s angry young man persona.', next:'Entrance Gate', photo2:true},
-        {clue:'She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.', next:'Finish Line (return to Game Master)'}
-      ]
+    // Step 1 mapping: which QR location each team visits first
+    const firstLocations = {
+      'team mustard missile':   'Lounge / Fire Pit',
+      'team rawmance':          'Big Tree / Breakfast Area',
+      'team zoom-in zoom-out':  'Entrance Gate',
+      'team what was that?':    'Library',
+      'team tax-free cricket':  'Estate Suite'
     };
-    function reveal(){
-      const t=document.getElementById('team').value.trim().toLowerCase();
-      const route=teamRoutes[t]; if(!route){document.getElementById('out').innerHTML='<em>Team name not recognized.</em>';return;}  
-      const step=route[pageIndex];
-      let html=`<strong>Clue:</strong> ${step.clue}<br><br><strong>Next QR Location:</strong> ${step.next}`;
-      if(step.photo1) html+=`<br><br><a href="phototask1.html" class="photo-btn"><button>📸 Photo Task 1</button></a>`;
-      if(step.photo2) html+=`<br><br><a href="phototask2.html" class="photo-btn"><button>📸 Photo Task 2</button></a>`;
-      document.getElementById('out').innerHTML=html;
+
+    const clueText =
+      'Deepika Padukone and Shah Rukh’s reincarnation romance ' +
+      'in a film that chants “peace” twice.';
+
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const out = document.getElementById('out');
+      const loc = firstLocations[t];
+
+      if (!loc) {
+        out.innerHTML = '<em>Team name not recognized. Please enter exactly as given.</em>';
+        return;
+      }
+
+      out.innerHTML =
+        `<strong>Clue:</strong> ${clueText}` +
+        `<br><br><strong>Next QR Location:</strong> ${loc}`;
     }
   </script>
 </body>
