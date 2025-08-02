@@ -3,31 +3,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Clue 1 – Sitla Treasure Hunt</title>
+  <title>Clue 1 – Sitla Treasure Hunt</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333;
-           padding: 20px; max-width: 600px; margin: auto; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff7e6;
+      color: #333;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
     h1 { color: #b30059; }
-    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
-    button { background-color: #ff66b3; color: #fff; border: none; cursor: pointer; margin-top: 10px; }
-    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #ff66b3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #ffe6f0;
+      border-left: 4px solid #b30059;
+    }
   </style>
 </head>
 <body>
-  <h1>✨ Clue 1 ✨</h1>
+  <h1>✨ Clue 1 ✨</h1>
   <p>The host hands you this clue. Enter your team name to see where to scan your first QR code:</p>
   <input id="team" placeholder="e.g. team mustard missile" />
   <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
-    // Step 1 mapping: which QR location each team visits first
+    // Step 1 mapping: which QR location each team visits first
     const firstLocations = {
-      'team mustard missile':   'Lounge / Fire Pit',
-      'team rawmance':          'Big Tree / Breakfast Area',
-      'team zoom-in zoom-out':  'Entrance Gate',
-      'team what was that?':    'Library',
-      'team tax-free cricket':  'Estate Suite'
+      'team mustard missile':    'Lounge / Fire Pit',
+      'team rawmance':           'Big Tree / Breakfast Area',
+      'team zoom-in zoom-out':   'Entrance Gate',
+      'team what was that?':     'Library',
+      'team tax-free cricket':   'Estate Suite'
     };
 
     const clueText =
