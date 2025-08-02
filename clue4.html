@@ -1,8 +1,9 @@
+<!-- Clue4.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title> ✨ Clue 4 – Sitla Wedding Treasure Hunt </title>
+  <meta charset="UTF-8" />
+  <title>Clue 4 – Sitla Treasure Hunt</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -12,9 +13,7 @@
       max-width: 600px;
       margin: auto;
     }
-    h1 {
-      color: #b30059;
-    }
+    h1 { color: #b30059; }
     input, button {
       padding: 10px;
       font-size: 16px;
@@ -34,198 +33,42 @@
       background: #ffe6f0;
       border-left: 4px solid #b30059;
     }
-    .photo-btn {
-      margin-top: 12px;
-      display: inline-block;
-    }
-    .error {
-      color: #b71c1c;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
-  <h1>✨ Mitali and Shantanu's Wedding Treasure Hunt ✨</h1>
-  <p>Enter your team name:</p>
-  <input id="team" placeholder="e.g. Shantanu has no clue">
+  <h1>✨ Clue 4 ✨</h1>
+  <p>Scan the QR at <strong>Entrance Gate</strong>, then enter your team name:</p>
+  <input id="team" placeholder="e.g. team mustard missile" />
   <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
-    // Zero‑based index for Clue 4
-    const pageIndex = 3;
+    // Clue text (answer hidden)
+    const clueText =
+      'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?';
 
-    // All teams' fixed routes
-    const teamRoutes = {
-      "team mustard missile": [
-        {
-          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
-          next: "Lounge / Fire Pit"
-        },
-        {
-          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
-          next: "Big Tree / Breakfast Area"
-        },
-        {
-          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
-          next: "Estate Suite",
-          photo2: true
-        },
-        {
-          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
-          next: "Dining Area"
-        },
-        {
-          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
-          next: "Entrance Gate"
-        },
-        {
-          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
-          next: "Finish Line (return to Game Master)",
-          photo1: true
-        }
-      ],
-      "team rawmance": [
-        {
-          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
-          next: "Dining Area"
-        },
-        {
-          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
-          next: "Entrance Gate"
-        },
-        {
-          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
-          next: "Big Tree / Breakfast Area",
-          photo1: true
-        },
-        {
-          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
-          next: "Lounge / Fire Pit",
-          photo2: true
-        },
-        {
-          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
-          next: "Library"
-        },
-        {
-          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
-          next: "Finish Line (return to Game Master)"
-        }
-      ],
-      "team zoom-in zoom-out": [
-        {
-          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
-          next: "Entrance Gate",
-          photo2: true
-        },
-        {
-          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
-          next: "Lounge / Fire Pit",
-          photo1: true
-        },
-        {
-          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
-          next: "Dining Area"
-        },
-        {
-          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
-          next: "Library"
-        },
-        {
-          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
-          next: "Estate Suite"
-        },
-        {
-          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
-          next: "Finish Line (return to Game Master)"
-        }
-      ],
-      "team what was that?": [
-        {
-          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
-          next: "Library",
-          photo1: true
-        },
-        {
-          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
-          next: "Estate Suite"
-        },
-        {
-          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
-          next: "Lounge / Fire Pit"
-        },
-        {
-          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
-          next: "Dining Area"
-        },
-        {
-          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
-          next: "Big Tree / Breakfast Area"
-        },
-        {
-          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
-          next: "Finish Line (return to Game Master)",
-          photo2: true
-        }
-      ],
-      "team tax-free cricket": [
-        {
-          clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.",
-          next: "Estate Suite"
-        },
-        {
-          clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?",
-          next: "Library"
-        },
-        {
-          clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants \"peace\" twice.",
-          next: "Entrance Gate"
-        },
-        {
-          clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.",
-          next: "Big Tree / Breakfast Area",
-          photo1: true
-        },
-        {
-          clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.",
-          next: "Entrance Gate",
-          photo2: true
-        },
-        {
-          clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.",
-          next: "Finish Line (return to Game Master)"
-        }
-      ]
+    // Step 4 → Next location per team
+    const nextLocations = {
+      'team mustard missile':   'Library',
+      'team rawmance':          'Library',
+      'team zoom-in zoom-out':  'Library',
+      'team what was that?':    'Finish Line (return to Game Master)',
+      'team tax-free cricket':  'Finish Line (return to Game Master)'
     };
 
     function reveal() {
-      const teamInput = document.getElementById("team");
-      const teamName = teamInput.value.trim().toLowerCase();
-      const outputEl = document.getElementById("out");
-      const route = teamRoutes[teamName];
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const out = document.getElementById('out');
+      const loc = nextLocations[t];
 
-      if (!route) {
-        outputEl.innerHTML = '<p class="error">Team name not recognized.</p>';
+      if (!loc) {
+        out.innerHTML = '<em>Team name not recognized. Please enter exactly as given.</em>';
         return;
       }
 
-      const step = route[pageIndex];
-      let html = `<strong>Clue:</strong> ${step.clue}<br><br>`;
-      html += `<strong>Next QR Location:</strong> ${step.next}`;
-
-      if (step.photo1) {
-        html += `<br><br><a href="phototask1.html" class="photo-btn">
-                   <button>📸 Photo Task 1</button>
-                 </a>`;
-      }
-      if (step.photo2) {
-        html += `<br><br><a href="phototask2.html" class="photo-btn">
-                   <button>📸 Photo Task 2</button>
-                 </a>`;
-      }
-
-      outputEl.innerHTML = html;
+      out.innerHTML =
+        `<strong>Clue:</strong> ${clueText}` +
+        `<br><br><strong>Next QR Location:</strong> ${loc}`;
     }
   </script>
 </body>
