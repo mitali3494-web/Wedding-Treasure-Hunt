@@ -1,213 +1,50 @@
+<!-- Clue4.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>✨ Clue 4 – Sitla Treasure Hunt</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
-
+  <title>Clue 4 – Sitla Treasure Hunt</title>
   <style>
-    /* Global Reset */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: linear-gradient(135deg, #ffe6f0 0%, #fff7e6 100%);
-      font-family: 'Merriweather', serif;
-      color: #333;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .container {
-      max-width: 600px;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: #b30059;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
-      font-size: 1rem;
-      border: 2px solid #ddd;
-      border-radius: 6px;
-      transition: border-color 0.3s;
-    }
-
-    input:focus {
-      border-color: #b30059;
-      outline: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: white;
-      background-color: #ff66b3;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(255,102,179,0.4);
-      transition: background-color 0.3s, transform 0.1s;
-    }
-
-    button:hover {
-      background-color: #e65599;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .error {
-      color: #b71c1c;
-      margin-top: 12px;
-      font-style: italic;
-    }
-
-    .output {
-      margin-top: 24px;
-      padding: 20px;
-      background: #ffe6f0;
-      border-left: 6px solid #b30059;
-      border-radius: 6px;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
-      opacity: 0;
-      animation: fadeIn 0.8s forwards;
-    }
-
-    .output p {
-      margin-bottom: 12px;
-    }
-
-    .photo-btn button {
-      width: auto;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #b30059;
-      box-shadow: 0 4px 12px rgba(179,0,89,0.4);
-      margin-top: 12px;
-    }
-
-    .photo-btn button:hover {
-      background-color: #901347;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fff7e6; color: #333; padding: 20px; max-width: 600px; margin: auto; }
+    h1 { color: #b30059; }
+    input, button { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { background-color: #ff66b3; color: #fff; border: none; cursor: pointer; margin-top: 10px; }
+    .output { margin-top: 20px; padding: 15px; background: #ffe6f0; border-left: 4px solid #b30059; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>✨ Clue 4 ✨</h1>
-    <p>Enter your team name to reveal your next filmy challenge:</p>
-    <input id="team" placeholder="e.g. team mustard missile" />
-    <button onclick="reveal()">Submit</button>
-    <div id="out" class="output"></div>
-  </div>
+  <h1>✨ Clue 4 ✨</h1>
+  <p>Scan the QR at your third location, then enter your team name:</p>
+  <input id="team" placeholder="e.g. team mustard missile">
+  <button onclick="reveal()">Submit</button>
+  <div class="output" id="out"></div>
 
   <script>
-    const pageIndex = 3;
-    const teamRoutes = {
-      "team mustard missile": [
-        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Lounge / Fire Pit" },
-        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Big Tree / Breakfast Area" },
-        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Estate Suite", photo2: true },
-        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Dining Area" },
-        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Entrance Gate" },
-        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Finish Line (return to Game Master)", photo1: true }
-      ],
-      "team rawmance": [
-        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Dining Area" },
-        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Entrance Gate" },
-        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Big Tree / Breakfast Area", photo1: true },
-        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Lounge / Fire Pit", photo2: true },
-        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Library" },
-        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Finish Line (return to Game Master)" }
-      ],
-      "team zoom-in zoom-out": [
-        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Entrance Gate", photo2: true },
-        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Lounge / Fire Pit", photo1: true },
-        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Dining Area" },
-        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Library" },
-        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Estate Suite" },
-        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Finish Line (return to Game Master)" }
-      ],
-      "team what was that?": [
-        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Library", photo1: true },
-        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Estate Suite" },
-        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Lounge / Fire Pit" },
-        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Dining Area" },
-        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Big Tree / Breakfast Area" },
-        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Finish Line (return to Game Master)", photo2: true }
-      ],
-      "team tax-free cricket": [
-        { clue: "She’s the queen of family dramas and over‑the‑top zoom‑ins.", next: "Estate Suite" },
-        { clue: "Which blockbuster had Anil Kapoor sworn in as a one‑day Chief Minister to fight corruption?", next: "Library" },
-        { clue: "Deepika Padukone and Shah Rukh’s reincarnation romance in a film that chants “peace” twice.", next: "Entrance Gate" },
-        { clue: "Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.", next: "Big Tree / Breakfast Area", photo1: true },
-        { clue: "The 1973 film that cemented Amitabh Bachchan’s angry young man persona.", next: "Entrance Gate", photo2: true },
-        { clue: "She couldn’t drink, she couldn’t date… but she could sprint through a mustard field in a lehenga.", next: "Finish Line (return to Game Master)" }
-      ]
+    // Fourth clue text (answer hidden)
+    const clueText = 
+      'Which blockbuster had Anil Kapoor sworn in as a one-day Chief Minister to fight corruption?';
+
+    // Next QR location per team (Step 4)
+    const nextLocations = {
+      'team mustard missile':   'Library',
+      'team rawmance':          'Entrance Gate',
+      'team zoom-in zoom-out':  'Lounge / Fire Pit',
+      'team what was that?':    'Big Tree / Breakfast Area',
+      'team tax-free cricket':  'Library'
     };
 
-    // Expose globally
-    window.reveal = function() {
-      const teamInput = document.getElementById("team");
-      const teamName = teamInput.value.trim().toLowerCase();
-      const outputEl = document.getElementById("out");
-      const route = teamRoutes[teamName];
-
-      if (!route) {
-        outputEl.innerHTML = '<p class="error">❌ Team name not recognized.</p>';
+    function reveal() {
+      const t = document.getElementById('team').value.trim().toLowerCase();
+      const out = document.getElementById('out');
+      const loc = nextLocations[t];
+      if (!loc) {
+        out.innerHTML = '<em>Team name not recognized. Please enter exactly as given.</em>';
         return;
       }
-
-      const step = route[pageIndex];
-      let html = `<p><strong>Clue:</strong> ${step.clue}</p>`;
-      html += `<p><strong>Next QR Location:</strong> ${step.next}</p>`;
-
-      if (step.photo1) {
-        html += `
-          <div class="photo-btn">
-            <button onclick="location.href='phototask1.html?team=${encodeURIComponent(teamName)}'">
-              📸 Photo Task 1
-            </button>
-          </div>`;
-      }
-      if (step.photo2) {
-        html += `
-          <div class="photo-btn">
-            <button onclick="location.href='phototask2.html?team=${encodeURIComponent(teamName)}'">
-              📸 Photo Task 2
-            </button>
-          </div>`;
-      }
-
-      outputEl.innerHTML = html;
-    };
+      out.innerHTML =
+        `<strong>Clue:</strong> ${clueText}` +
+        `<br><br><strong>Next QR Location:</strong> ${loc}`;
+    }
   </script>
 </body>
 </html>
