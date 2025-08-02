@@ -1,9 +1,9 @@
-<!-- Clue5.html -->
+<!-- Clue6.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Clue 5 – Sitla Treasure Hunt</title>
+  <title>Clue 6 – Sitla Treasure Hunt</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -33,27 +33,31 @@
       background: #ffe6f0;
       border-left: 4px solid #b30059;
     }
+    .photo-btn {
+      display: inline-block;
+      margin-top: 12px;
+    }
   </style>
 </head>
 <body>
-  <h1>✨ Clue 5 ✨</h1>
-  <p>Scan the QR at <strong>Library</strong>, then enter your team name:</p>
+  <h1>✨ Clue 6 ✨</h1>
+  <p>Scan the QR at <strong>Big Tree / Breakfast Area</strong>, then enter your team name:</p>
   <input id="team" placeholder="e.g. team mustard missile" />
   <button onclick="reveal()">Submit</button>
   <div class="output" id="out"></div>
 
   <script>
-    // Riddle for Clue 5 (answer hidden)
+    // Final riddle (answer hidden)
     const clueText =
-      'She’s the queen of family dramas and over-the-top zoom-ins.';
+      'Vishal Bhardwaj’s gritty Bundelkhand take on Shakespeare’s Othello.';
 
-    // Based on our frozen routes, Step 5 → Next stop per team
+    // Step 6 → everyone finishes at the Game Master
     const nextLocations = {
-      'team mustard missile':   'Big Tree / Breakfast Area',
-      'team rawmance':          'Finish Line (return to Game Master)',
-      'team zoom-in zoom-out':  'Big Tree / Breakfast Area',
-      'team what was that?':    'Entrance Gate',
-      'team tax-free cricket':  'Entrance Gate'
+      'team mustard missile':    'Finish Line (return to Game Master)',
+      'team rawmance':           'Finish Line (return to Game Master)',
+      'team zoom-in zoom-out':   'Finish Line (return to Game Master)',
+      'team what was that?':     'Finish Line (return to Game Master)',
+      'team tax-free cricket':   'Finish Line (return to Game Master)'
     };
 
     function reveal() {
@@ -68,7 +72,8 @@
 
       out.innerHTML =
         `<strong>Clue:</strong> ${clueText}` +
-        `<br><br><strong>Next QR Location:</strong> ${loc}`;
+        `<br><br><strong>Next QR Location:</strong> ${loc}` +
+        `<br><br><a href="phototask1.html" class="photo-btn"><button>📸 Photo Task 1</button></a>`;
     }
   </script>
 </body>
